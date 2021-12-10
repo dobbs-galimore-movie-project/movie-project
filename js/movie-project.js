@@ -1,68 +1,20 @@
 "use strict";
 (function () {
     //Allow users to add movies
-//TODO: Make an AJAX request to get a listing of all the movies
+    //TODO: Make an AJAX request to get a listing of all the movies
+    //TODO: When the initial AJAX request comes back, remove the "loading..." message and replace it with HTML generated from the json response your code receives
 
-//     const url = 'https://skitter-far-factory.glitch.me/movies';
-//     const options = {
-//         method: 'GET',
-//         headers: {
-//             'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify(blogPost),
-//     };
-//     fetch(url, options)
-//         .then(/* post was created successfully */)
-//         .catch(/* handle errors */);
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
     $.ajax("https://skitter-far-factory.glitch.me/movies").done(function(data, status, jqXhr) {
         $('#loading-message').empty();
         $('#loading-message').append('<h2>Movies:</h2>').append('<ul>');
-        // $('#loading-message').append('<ul>');
         data.forEach(function (element, index) {
-            // console.log(`Title: ${element[index].title}, Rating: ${element[index].rating}, Genre: ${element[index].genre} .`);
-            // console.log("Title: " + element.title + ", Rating: " + element.rating + " , Genre: " + element.genre);
-            // $('#loading-message').empty();
-            // $('#loading-message').append("Title: " + element.title + ", Rating: " + element.rating + " , Genre: " + element.genre);
-            // if (element.genre !== 'undefined') {
-            //     $('#loading-message').append(`<li>Title: ${element.title}, Rating: ${element.rating}, Genre: ${element.genre}</li>`);
-            // }
             if (element.genre !== undefined) {
                 $('#loading-message').append(`<li>Title: ${element.title}, Rating: ${element.rating}, Genre: ${element.genre}</li>`);
             }
-
-            // $('#loading-message').append(`<li>Title: ${element.title}, Rating: ${element.rating}, Genre: ${element.genre}</li>`);
         });
         $('#loading-message').append('</ul>');
-
-        // console.log(data);
-        // console.log(`Title: ${data[0].title}.`);
-        // console.log(`Rating: ${data[0].rating}.`);
-        // console.log(`Genre: ${data[0].genre}.`);
-
-        //TODO: When the initial AJAX request comes back, remove the "loading..." message and replace it with HTML generated from the json response your code receives
-
-        // $('#loading-message').html("Done loading");
     });
 
-// const reviewObj = {
-//     restaurant_id: 1,
-//     name: 'Test',
-//     rating: 3,
-//     comments: "Hello"
-// };
-// const url = 'https://skitter-far-factory.glitch.me/movies';
-// const options = {
-//     method: 'POST',
-//     headers: {
-//         'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify(reviewObj),
-// };
-// fetch(url, options)
-//     .then( response => console.log(response) ) /* review was created successfully */
-//     .catch( error => console.error(error) ); /* handle errors */
 //TODO: When the form is submitted, the page should not reload / refresh, instead, your javascript should make a POST request to /movies with the information the user put into the form
 
 //Allow users to edit existing movies
