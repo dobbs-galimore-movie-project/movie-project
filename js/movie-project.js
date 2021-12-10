@@ -3,16 +3,14 @@
     //Allow users to add movies
     //TODO: Make an AJAX request to get a listing of all the movies
     //TODO: When the initial AJAX request comes back, remove the "loading..." message and replace it with HTML generated from the json response your code receives
-
     $.ajax("https://skitter-far-factory.glitch.me/movies").done(function(data, status, jqXhr) {
         $('#loading-message').empty();
-        $('#loading-message').append('<h2>Movies:</h2>').append('<ul>');
+        // $('#loading-message').append('<h2>Movies:</h2>')
         data.forEach(function (element, index) {
             if (element.genre !== undefined) {
-                $('#loading-message').append(`<li>Title: ${element.title}, Rating: ${element.rating}, Genre: ${element.genre}</li>`);
+                $('#movies-list-table').append(`<tr><td>${element.title}</td><td>${element.rating}</td><td>${element.genre}</td></tr>`);
             }
         });
-        $('#loading-message').append('</ul>');
     });
 
 //TODO: When the form is submitted, the page should not reload / refresh, instead, your javascript should make a POST request to /movies with the information the user put into the form
