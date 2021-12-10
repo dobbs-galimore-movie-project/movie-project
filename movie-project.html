@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Movies Project</title>
+</head>
+<body>
+<h1 style="text-align: center">Movies Project</h1>
+<br>
+<!-- TODONE: Display "loading..." message-->
+<p id="loading-message" style="text-align: center">Loading...</p>
+<br>
+<!--TODO: Create a form for adding a new movie that has fields for the movie's title and rating
+When the form is submitted, the page should not reload / refresh, instead, your javascript should make a POST request to /movies with the information the user put into the form -->
+<form action="" style="text-align: center">
+    <p>Add a movie to the list:</p>
+    <label for="movie-title-input">Enter a movie title:</label>
+    <input id="movie-title-input" type="text">
+    <br>
+    <label for="movie-rating-input">Enter a rating:</label>
+    <input id="movie-rating-input" type="text">
+    <br>
+    <button id="movie-add-button" type="button">Submit Information</button>
+</form>
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script>
+    //TODO: Make an AJAX request to get a listing of all the movies
+    //TODO: When the initial AJAX request comes back, remove the "loading..." message and replace it with HTML generated from the json response your code receives
+</script>
+</body>
+</html>
