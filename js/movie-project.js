@@ -5,8 +5,8 @@
     //TODO: When the initial AJAX request comes back, remove the "loading..." message and replace it with HTML generated from the json response your code receives
     $.ajax("https://skitter-far-factory.glitch.me/movies").done(function(data, status, jqXhr) {
         // console.log(data);
-        $('#loading-message').empty();
-        // $('#loading-message').append('<h2>Movies:</h2>')
+        $('#loading-message').toggleClass('hidden');
+        $('#loading-message').append('<h2>Movies:</h2>');
         data.forEach(function (element, index) {
             if (element.genre !== undefined) {
                 $('#movies-list-table').append(`<tr><td>${element.title}</td><td>${element.rating}</td><td>${element.genre}</td></tr>`);
@@ -18,15 +18,12 @@
     let userRating = '';
     let userGenre = '';
 
-
-
     $('#movie-add-button').click(function (event) {
         event.preventDefault();
         userTitle = $('#movie-title-input').val();
         userRating = $('#movie-rating-input').val();
         userGenre = $('#movie-genre-input').val();
-        // console.log(userTitle + " " + userRating + " " + userGenre);
-        // $('#movies-list-table').append(`<tr><td>${userTitle}</td><td>${userRating}</td><td>${userGenre}</td></tr>`);
+
         const userAdd = {title: userTitle, rating: userRating, genre: userGenre};
         const url = 'https://skitter-far-factory.glitch.me/movies';
         const options = {
@@ -38,8 +35,9 @@
         };
         fetch(url, options)
             .then() /* review was created successfully */
-            .catch( error => console.error(error) ); /* handle errors */
+            .catch( error => console.error(error)); /* handle errors */
 
+        ///////////////WHERE DO WE PUT THIS?////////////////////////////////
         $.ajax("https://skitter-far-factory.glitch.me/movies").done(function(data, status, jqXhr) {
             // console.log(data);
 
@@ -53,23 +51,10 @@
                 });
             }, 5000);
 
-
             console.log(data);
         });
-
-        // function getLastCommit (username) {
-        //     fetch(`https://api.github.com/users/${username}/events`, {headers: {'Authorization': GITHUB_KEY}}).then(response => response.json())
-        //         .then(data => console.log(`${username}'s last commit was on: ${data[0].created_at.substring(0, 10)}`))
-        //         .catch(error => console.error(error));
-        // }
-
-// getLastCommit('derek-dobbs');
-    });
-
-
-
-
-
+        ////////////WHERE DO WE PUT THIS ^^^?///////////////////////////////////
+    }); //end movie-add-button .click
 
 //TODO: When the form is submitted, the page should not reload / refresh, instead, your javascript should make a POST request to /movies with the information the user put into the form
 
