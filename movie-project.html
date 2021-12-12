@@ -38,6 +38,7 @@
             <thead>
                 <tr>
                     <th><input class="checkbox" type="checkbox"></th>
+                    <th>ID #</th>
                     <th>Title</th>
                     <th>Rating</th>
                     <th>Genre</th>
@@ -49,6 +50,29 @@
             </tbody>
         </table>
     </div> <!--end container-fluid-->
+
+    <div class="container-fluid d-flex flex-column align-items-center mx-auto" style="width: auto">
+        <h3>Edit a movie:</h3>
+        <div class="d-flex justify-content-between">
+            <div class="container d-flex flex-column align-items-center">
+                <label for="movie-title-input">Enter a movie title:</label>
+                <input class="form-control" id="movie-title-edit-input" type="text" onfocus="this.value=''">
+            </div>
+
+            <div class="container d-flex flex-column align-items-center">
+                <label for="movie-rating-input">Enter a rating:</label>
+                <input class="form-control" id="movie-rating-edit-input" type="text" onfocus="this.value=''">
+            </div>
+
+            <div class="container d-flex flex-column align-items-center">
+                <label for="movie-genre-input">Enter the genre:</label>
+                <input class="form-control" id="movie-genre-edit-input" type="text" onfocus="this.value=''">
+            </div>
+        </div>
+        <br>
+        <button id="movie-edit-button" type="button" class="">Submit Changes</button>
+    </div> <!--end container-fluid-->
+
 
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"
             integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
