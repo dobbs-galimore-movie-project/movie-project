@@ -39,14 +39,13 @@
             .catch( error => console.error(error));
 
         setTimeout(function () {
-            // $('#movie-title-input').html();
-            // $('#movie-rating-input').html();
-            // $('#movie-genre-input').html();
             $('#loading-message').toggleClass('hidden');
             $('#movies-list-table').empty();
             // $('#loading-message').append('<h2>Movies:</h2>')
             $.ajax("https://skitter-far-factory.glitch.me/movies").done(function(data, status, jqXhr) {
-
+                $('#movie-title-input').val('');
+                $('#movie-rating-input').val('');
+                $('#movie-genre-input').val('');
                 console.log(data);
                 data.forEach(function (element, index) {
                     if (element.genre !== undefined) {
