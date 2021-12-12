@@ -23,6 +23,6 @@ header {
 .hidden {
     visibility: hidden;
 }
- th {
+ th, a {
      color: yellowgreen;
  }
