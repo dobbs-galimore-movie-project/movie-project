@@ -4,19 +4,22 @@ $(document).ready(function () {
     //TODONE: Make an AJAX request to get a listing of all the movies
     //TODONE: When the initial AJAX request comes back, remove the "loading..." message and replace it with HTML generated from the json response your code receives
     $.ajax("https://skitter-far-factory.glitch.me/movies").done(function(data, status, jqXhr) {
-        // console.log(data);
+        console.log(data);
         $('#loading-message').toggleClass('hidden');
         // $('#loading-message').append('<h2>Movies:</h2>');
         data.forEach(function (element, index) {
             if (element.genre !== undefined) {
-                $('#movies-list-table').append(`<tr><td><input class="checkbox" type="checkbox"/>&nbsp;</td><td>${element.title}</td><td>${element.rating}</td><td>${element.genre}</td><td><a href="#" class="edit-link">edit </a>/<a href="#" class="delete-link"> delete</a></td></tr>`);
+                $('#movies-list-table').append(`<tr><td><input class="checkbox" type="checkbox"/>&nbsp;</td><td>${element.id}</td><td>${element.title}</td><td>${element.rating}</td><td>${element.genre}</td><td><a href="#" class="edit-link">edit </a>/<a href="#" class="delete-link"> delete</a></td></tr>`);
             }
         });
     });
-
     let userTitle = '';
     let userRating = '';
     let userGenre = '';
+
+    let newUserTitle = '';
+    let newUserRating = '';
+    let newUserGenre = '';
 
     $('#movie-add-button').click(function (event) {
         $('#loading-message').toggleClass('hidden');
@@ -50,7 +53,46 @@ $(document).ready(function () {
                 console.log(data);
                 data.forEach(function (element, index) {
                     if (element.genre !== undefined) {
-                        $('#movies-list-table').append(`<tr><td><input class="checkbox" type="checkbox" />&nbsp;</td><td>${element.title}</td><td>${element.rating}</td><td>${element.genre}</td><td><a href="#" class="edit-link">edit </a>/<a href="#" class="delete-link"> delete</a></td></tr>`);
+                        $('#movies-list-table').append(`<tr><td><input class="checkbox" type="checkbox" />&nbsp;</td><td>${element.id}</td><td>${element.title}</td><td>${element.rating}</td><td>${element.genre}</td><td><a href="#" class="edit-link">edit </a>/<a href="#" class="delete-link"> delete</a></td></tr>`);
+                    }
+                });
+            });
+        }, 3000);
+    }); //end movie-add-button .click
+
+    $('#movie-edit-button').click(function (event) {
+        $('#loading-message').toggleClass('hidden');
+        event.preventDefault();
+        //TODONE: When the form is submitted, the page should not reload / refresh, instead, your javascript should make a POST request to /movies with the information the user put into the form
+        newUserTitle = $('#movie-title-edit-input').val();
+        newUserRating = $('#movie-rating-edit-input').val();
+        newUserGenre = $('#movie-genre-edit-input').val();
+
+        const newUserAdd = {title: newUserTitle, rating: newUserRating, genre: newUserGenre};
+        const url = 'https://skitter-far-factory.glitch.me/movies/97';
+        const options = {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(newUserAdd),
+        };
+        fetch(url, options)
+            .then(data => console.log(data))
+            .catch( error => console.error(error));
+
+        setTimeout(function () {
+            $('#loading-message').toggleClass('hidden');
+            $('#movies-list-table').empty();
+            // $('#loading-message').append('<h2>Movies:</h2>')
+            $.ajax("https://skitter-far-factory.glitch.me/movies").done(function(data, status, jqXhr) {
+                $('#movie-title-input').val('');
+                $('#movie-rating-input').val('');
+                $('#movie-genre-input').val('');
+                console.log(data);
+                data.forEach(function (element, index) {
+                    if (element.genre !== undefined) {
+                        $('#movies-list-table').append(`<tr><td><input class="checkbox" type="checkbox" />&nbsp;</td><td>${element.id}</td><td>${element.title}</td><td>${element.rating}</td><td>${element.genre}</td><td><a href="#" class="edit-link">edit </a>/<a href="#" class="delete-link"> delete</a></td></tr>`);
                     }
                 });
             });
@@ -66,7 +108,7 @@ $(document).ready(function () {
     //     }
     // });
 
-    $(document).on('click', '.record_table tr', function() {
+    $(document).on('click', '.record_table tr', function(event) {
         // alert("checkbox test");
         // $('body').css('color', 'yellow');
         if (event.target.type !== 'checkbox') {
