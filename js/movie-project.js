@@ -1,12 +1,12 @@
 "use strict";
 (function () {
     //Allow users to add movies
-    //TODO: Make an AJAX request to get a listing of all the movies
-    //TODO: When the initial AJAX request comes back, remove the "loading..." message and replace it with HTML generated from the json response your code receives
+    //TODONE: Make an AJAX request to get a listing of all the movies
+    //TODONE: When the initial AJAX request comes back, remove the "loading..." message and replace it with HTML generated from the json response your code receives
     $.ajax("https://skitter-far-factory.glitch.me/movies").done(function(data, status, jqXhr) {
         // console.log(data);
         $('#loading-message').toggleClass('hidden');
-        $('#loading-message').append('<h2>Movies:</h2>');
+        // $('#loading-message').append('<h2>Movies:</h2>');
         data.forEach(function (element, index) {
             if (element.genre !== undefined) {
                 $('#movies-list-table').append(`<tr><td>${element.title}</td><td>${element.rating}</td><td>${element.genre}</td></tr>`);
@@ -19,6 +19,7 @@
     let userGenre = '';
 
     $('#movie-add-button').click(function (event) {
+        $('#loading-message').toggleClass('hidden');
         event.preventDefault();
         userTitle = $('#movie-title-input').val();
         userRating = $('#movie-rating-input').val();
@@ -34,28 +35,27 @@
             body: JSON.stringify(userAdd),
         };
         fetch(url, options)
-            .then() /* review was created successfully */
-            .catch( error => console.error(error)); /* handle errors */
+            .then(data => console.log(data))
+            .catch( error => console.error(error));
 
-        ///////////////WHERE DO WE PUT THIS?////////////////////////////////
-        $.ajax("https://skitter-far-factory.glitch.me/movies").done(function(data, status, jqXhr) {
-            // console.log(data);
+        setTimeout(function () {
+            // $('#movie-title-input').html();
+            // $('#movie-rating-input').html();
+            // $('#movie-genre-input').html();
+            $('#loading-message').toggleClass('hidden');
+            $('#movies-list-table').empty();
+            // $('#loading-message').append('<h2>Movies:</h2>')
+            $.ajax("https://skitter-far-factory.glitch.me/movies").done(function(data, status, jqXhr) {
 
-            setTimeout(function () {
-                $('#movies-list-table').empty();
-                $('#loading-message').append('<h2>Movies:</h2>')
+                console.log(data);
                 data.forEach(function (element, index) {
                     if (element.genre !== undefined) {
                         $('#movies-list-table').append(`<tr><td>${element.title}</td><td>${element.rating}</td><td>${element.genre}</td></tr>`);
                     }
                 });
-            }, 5000);
-
-            console.log(data);
-        });
-        ////////////WHERE DO WE PUT THIS ^^^?///////////////////////////////////
+            });
+        }, 3000);
     }); //end movie-add-button .click
-
 //TODO: When the form is submitted, the page should not reload / refresh, instead, your javascript should make a POST request to /movies with the information the user put into the form
 
 //Allow users to edit existing movies
