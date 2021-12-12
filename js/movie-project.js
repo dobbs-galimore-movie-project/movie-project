@@ -21,6 +21,7 @@
     $('#movie-add-button').click(function (event) {
         $('#loading-message').toggleClass('hidden');
         event.preventDefault();
+        //TODONE: When the form is submitted, the page should not reload / refresh, instead, your javascript should make a POST request to /movies with the information the user put into the form
         userTitle = $('#movie-title-input').val();
         userRating = $('#movie-rating-input').val();
         userGenre = $('#movie-genre-input').val();
@@ -55,7 +56,6 @@
             });
         }, 3000);
     }); //end movie-add-button .click
-//TODO: When the form is submitted, the page should not reload / refresh, instead, your javascript should make a POST request to /movies with the information the user put into the form
 
 //Allow users to edit existing movies
 //TODO: Give users the option to edit an existing movie
