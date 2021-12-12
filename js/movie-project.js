@@ -69,7 +69,7 @@ $(document).ready(function () {
         newUserGenre = $('#movie-genre-edit-input').val();
 
         const newUserAdd = {title: newUserTitle, rating: newUserRating, genre: newUserGenre};
-        const url = 'https://skitter-far-factory.glitch.me/movies/97';
+        const url = 'https://skitter-far-factory.glitch.me/movies/102';
         const options = {
             method: 'PATCH',
             headers: {
@@ -86,9 +86,9 @@ $(document).ready(function () {
             $('#movies-list-table').empty();
             // $('#loading-message').append('<h2>Movies:</h2>')
             $.ajax("https://skitter-far-factory.glitch.me/movies").done(function(data, status, jqXhr) {
-                $('#movie-title-input').val('');
-                $('#movie-rating-input').val('');
-                $('#movie-genre-input').val('');
+                $('#movie-title-edit-input').val('');
+                $('#movie-rating-edit-input').val('');
+                $('#movie-genre-edit-input').val('');
                 console.log(data);
                 data.forEach(function (element, index) {
                     if (element.genre !== undefined) {
