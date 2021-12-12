@@ -1,5 +1,5 @@
 "use strict";
-(function () {
+$(document).ready(function () {
     //Allow users to add movies
     //TODONE: Make an AJAX request to get a listing of all the movies
     //TODONE: When the initial AJAX request comes back, remove the "loading..." message and replace it with HTML generated from the json response your code receives
@@ -9,7 +9,7 @@
         // $('#loading-message').append('<h2>Movies:</h2>');
         data.forEach(function (element, index) {
             if (element.genre !== undefined) {
-                $('#movies-list-table').append(`<tr><td><input type="checkbox" name="name1" />&nbsp;</td><td>${element.title}</td><td>${element.rating}</td><td>${element.genre}</td><td><a href="#" class="edit-link">edit </a>/<a href="#" class="delete-link"> delete</a></td></tr>`);
+                $('#movies-list-table').append(`<tr><td><input class="checkbox" type="checkbox"/>&nbsp;</td><td>${element.title}</td><td>${element.rating}</td><td>${element.genre}</td><td><a href="#" class="edit-link">edit </a>/<a href="#" class="delete-link"> delete</a></td></tr>`);
             }
         });
     });
@@ -50,12 +50,29 @@
                 console.log(data);
                 data.forEach(function (element, index) {
                     if (element.genre !== undefined) {
-                        $('#movies-list-table').append(`<tr><td><input type="checkbox" name="name1" />&nbsp;</td><td>${element.title}</td><td>${element.rating}</td><td>${element.genre}</td><td><a href="#" class="edit-link">edit </a>/<a href="#" class="delete-link"> delete</a></td></tr>`);
+                        $('#movies-list-table').append(`<tr><td><input class="checkbox" type="checkbox" />&nbsp;</td><td>${element.title}</td><td>${element.rating}</td><td>${element.genre}</td><td><a href="#" class="edit-link">edit </a>/<a href="#" class="delete-link"> delete</a></td></tr>`);
                     }
                 });
             });
         }, 3000);
     }); //end movie-add-button .click
+
+    // $('input[type=checkbox]').change(function() {
+    //     if ($(this).is(':checked')) {
+    //         alert("checked");
+    //     }
+    //     else {
+    //         alert("unchecked");
+    //     }
+    // });
+
+    $(document).on('click', '.record_table tr', function() {
+        // alert("checkbox test");
+        // $('body').css('color', 'yellow');
+        if (event.target.type !== 'checkbox') {
+            $(':checkbox', this).trigger('click');
+        }
+    });
 
 //Allow users to edit existing movies
 //TODO: Give users the option to edit an existing movie
@@ -78,5 +95,5 @@
     The id property of every movie should not be edited by hand. The purpose of this property is to uniquely identify that particular movie. That is, if we want to delete or modify an existing movie, we can specify what movie we want to change by referencing it's id. When a new movie is created (i.e. when you send a POST request to /movies with a title and a rating), the server will respond with the movie object that was created, including a generated id.
     Take a look at the other branches in this repository, as they have configuration/setup for common scenarios, such as including bootstrap in your application.
     */
-})();
+});
 
