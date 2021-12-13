@@ -1,8 +1,5 @@
 "use strict";
 $(document).ready(function () {
-    //Allow users to add movies
-    //TODONE: Make an AJAX request to get a listing of all the movies
-    //TODONE: When the initial AJAX request comes back, remove the "loading..." message and replace it with HTML generated from the json response your code receives
     $.ajax("https://skitter-far-factory.glitch.me/movies").done(function(data, status, jqXhr) {
         console.log(data);
         $('#loading-message').toggleClass('hidden');
@@ -30,7 +27,7 @@ $(document).ready(function () {
     $('#movie-add-button').click(function (event) {
         $('#loading-message').toggleClass('hidden');
         event.preventDefault();
-        //TODONE: When the form is submitted, the page should not reload / refresh, instead, your javascript should make a POST request to /movies with the information the user put into the form
+
         userTitle = $('#movie-title-input').val();
         userRating = $('#movie-rating-input').val();
         userGenre = $('#movie-genre-input').val();
@@ -105,28 +102,15 @@ $(document).ready(function () {
         }, 3000);
     }); //end movie-add-button .click
 
-    // $('input[type=checkbox]').change(function() {
-    //     if ($(this).is(':checked')) {
-    //         alert("checked");
-    //     }
-    //     else {
-    //         alert("unchecked");
-    //     }
-    // });
-
-    // $(document).on('click', '.record_table tr', function(event) {
-    //     // alert("checkbox test");
-    //     // $('body').css('color', 'yellow');
-    //     if (event.target.type !== 'checkbox') {
-    //         $(':checkbox', this).trigger('click');
-    //     }
-    //
-    // });
-
-    $(document).on('click', '.edit-link', function(event) {
+    $(document).on('click', '.record_table tr', function(event) {
         // alert("checkbox test");
         // $('body').css('color', 'yellow');
+        if (event.target.type !== 'checkbox') {
+            $(':checkbox', this).trigger('click');
+        }
+    });
 
+    $(document).on('click', '.edit-link', function(event) {
         if (event.target.type !== 'checkbox') {
             $(':checkbox', this).trigger('click');
         }
@@ -137,22 +121,10 @@ $(document).ready(function () {
         $ratingValue = $row.find(".rating-value").text();
         $genreValue = $row.find(".genre-value").text();
 
-        // alert(`ID: ${$idText}, Title: ${$titleValue}, Rating: ${$ratingValue}, Genre: ${$genreValue}`);
-
         $('#movie-title-edit-input').attr('value', $titleValue);
         $('#movie-rating-edit-input').attr('value', $ratingValue);
         $('#movie-genre-edit-input').attr('value', $genreValue);
-
-
     });
-
-    // $('.edit-link').click(function () {
-    //     var $row = $(this).closest("tr");    // Find the row
-    //     var $text = $row.find(".nr").text(); // Find the text
-    //
-    //     // Let's test it out
-    //     alert($text);
-    // });
 
 //Allow users to edit existing movies
 //TODO: Give users the option to edit an existing movie
