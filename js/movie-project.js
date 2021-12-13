@@ -9,7 +9,7 @@ $(document).ready(function () {
         // $('#loading-message').append('<h2>Movies:</h2>');
         data.forEach(function (element, index) {
             if (element.genre !== undefined) {
-                $('#movies-list-table').append(`<tr><td><input class="checkbox" type="checkbox"/>&nbsp;</td><td>${element.id}</td><td>${element.title}</td><td>${element.rating}</td><td>${element.genre}</td><td><a href="#" class="edit-link">edit </a>/<a href="#" class="delete-link"> delete</a></td></tr>`);
+                $('#movies-list-table').append(`<tr><td><input class="checkbox" type="checkbox"/>&nbsp;</td><td class="id-text">${element.id}</td><td class="title-value">${element.title}</td><td class="rating-value">${element.rating}</td><td class="genre-value">${element.genre}</td><td><a href="#" class="edit-link">edit </a>/<a href="#" class="delete-link"> delete</a></td></tr>`);
             }
         });
     });
@@ -20,6 +20,12 @@ $(document).ready(function () {
     let newUserTitle = '';
     let newUserRating = '';
     let newUserGenre = '';
+
+    let $row = '';
+    let $idText = '';
+    let $titleValue = '';
+    let $ratingValue = '';
+    let $genreValue = '';
 
     $('#movie-add-button').click(function (event) {
         $('#loading-message').toggleClass('hidden');
@@ -53,7 +59,7 @@ $(document).ready(function () {
                 console.log(data);
                 data.forEach(function (element, index) {
                     if (element.genre !== undefined) {
-                        $('#movies-list-table').append(`<tr><td><input class="checkbox" type="checkbox" />&nbsp;</td><td>${element.id}</td><td>${element.title}</td><td>${element.rating}</td><td>${element.genre}</td><td><a href="#" class="edit-link">edit </a>/<a href="#" class="delete-link"> delete</a></td></tr>`);
+                        $('#movies-list-table').append(`<tr><td><input class="checkbox" type="checkbox" />&nbsp;</td><td class="id-text">${element.id}</td><td class="title-value">${element.title}</td><td class="rating-value">${element.rating}</td><td class="genre-value">${element.genre}</td><td><a href="#" class="edit-link">edit </a>/<a href="#" class="delete-link"> delete</a></td></tr>`);
                     }
                 });
             });
@@ -69,7 +75,7 @@ $(document).ready(function () {
         newUserGenre = $('#movie-genre-edit-input').val();
 
         const newUserAdd = {title: newUserTitle, rating: newUserRating, genre: newUserGenre};
-        const url = 'https://skitter-far-factory.glitch.me/movies/102';
+        const url = 'https://skitter-far-factory.glitch.me/movies/103';
         const options = {
             method: 'PATCH',
             headers: {
@@ -92,7 +98,7 @@ $(document).ready(function () {
                 console.log(data);
                 data.forEach(function (element, index) {
                     if (element.genre !== undefined) {
-                        $('#movies-list-table').append(`<tr><td><input class="checkbox" type="checkbox" />&nbsp;</td><td>${element.id}</td><td>${element.title}</td><td>${element.rating}</td><td>${element.genre}</td><td><a href="#" class="edit-link">edit </a>/<a href="#" class="delete-link"> delete</a></td></tr>`);
+                        $('#movies-list-table').append(`<tr><td><input class="checkbox" type="checkbox" />&nbsp;</td><td class="nr">${element.id}</td><td>${element.title}</td><td>${element.rating}</td><td>${element.genre}</td><td><a href="#" class="edit-link">edit </a>/<a href="#" class="delete-link"> delete</a></td></tr>`);
                     }
                 });
             });
@@ -108,13 +114,40 @@ $(document).ready(function () {
     //     }
     // });
 
-    $(document).on('click', '.record_table tr', function(event) {
+    // $(document).on('click', '.record_table tr', function(event) {
+    //     // alert("checkbox test");
+    //     // $('body').css('color', 'yellow');
+    //     if (event.target.type !== 'checkbox') {
+    //         $(':checkbox', this).trigger('click');
+    //     }
+    //
+    // });
+
+    $(document).on('click', '.edit-link', function(event) {
         // alert("checkbox test");
         // $('body').css('color', 'yellow');
+
         if (event.target.type !== 'checkbox') {
             $(':checkbox', this).trigger('click');
         }
+
+        $row = $(this).closest("tr");    // Find the row
+        $idText = $row.find(".id-text").text(); // Find the text
+        $titleValue = $row.find(".title-value").text();
+        $ratingValue = $row.find(".rating-value").text();
+        $genreValue = $row.find(".genre-value").text();
+
+        alert(`ID: ${$idText}, Title: ${$titleValue}, Rating: ${$ratingValue}, Genre: ${$genreValue}`);
+
     });
+
+    // $('.edit-link').click(function () {
+    //     var $row = $(this).closest("tr");    // Find the row
+    //     var $text = $row.find(".nr").text(); // Find the text
+    //
+    //     // Let's test it out
+    //     alert($text);
+    // });
 
 //Allow users to edit existing movies
 //TODO: Give users the option to edit an existing movie
