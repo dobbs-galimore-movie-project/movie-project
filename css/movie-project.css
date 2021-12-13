@@ -31,9 +31,17 @@ header {
  }
 
  .display-none {
-     /*display: none !important;*/
+     display: none !important;
+ }
+
+ .display-block {
+     display: block;
  }
 
  .id-text {
      display: none;
  }
+
+ /*#edit-movie-box {*/
+ /*    display: none !important;*/
+ /*}*/
