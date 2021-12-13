@@ -1,21 +1,12 @@
 "use strict";
 $(document).ready(function () {
-    // function myFunction() {
-    //     var x = $('#edit-movie-box');
-    //     if (x.style.display === "none") {
-    //         x.style.display = "block";
-    //     } else {
-    //         x.style.display = "none";
-    //     }
-    // }
-
     $.ajax("https://skitter-far-factory.glitch.me/movies").done(function(data, status, jqXhr) {
         console.log(data);
         $('#loading-message').toggleClass('hidden');
-        // $('#loading-message').append('<h2>Movies:</h2>');
+
         data.forEach(function (element, index) {
             if (element.genre !== undefined) {
-                $('#movies-list-table').append(`<tr><td><input class="checkbox" type="checkbox"/>&nbsp;</td><td class="id-text">${element.id}</td><td class="title-value">${element.title}</td><td class="rating-value">${element.rating}</td><td class="genre-value">${element.genre}</td><td><a href="#" class="edit-link">edit/delete</a></td></tr>`);
+                $('#movies-list-table').append(`<tr><td class="id-text">${element.id}</td><td class="title-value">${element.title}</td><td class="rating-value">${element.rating}</td><td class="genre-value">${element.genre}</td><td><a href="#" class="edit-link">edit/delete</a></td></tr>`);
             }
         });
     });
@@ -61,7 +52,7 @@ $(document).ready(function () {
         setTimeout(function () {
             $('#loading-message').toggleClass('hidden');
             $('#movies-list-table').empty();
-            // $('#loading-message').append('<h2>Movies:</h2>')
+
             $.ajax("https://skitter-far-factory.glitch.me/movies").done(function(data, status, jqXhr) {
                 $('#movie-title-input').val('');
                 $('#movie-rating-input').val('');
@@ -69,7 +60,7 @@ $(document).ready(function () {
                 console.log(data);
                 data.forEach(function (element, index) {
                     if (element.genre !== undefined) {
-                        $('#movies-list-table').append(`<tr><td><input class="checkbox" type="checkbox" />&nbsp;</td><td class="id-text">${element.id}</td><td class="title-value">${element.title}</td><td class="rating-value">${element.rating}</td><td class="genre-value">${element.genre}</td><td><a href="#" class="edit-link">edit/delete</a></td></tr>`);
+                        $('#movies-list-table').append(`<tr><td class="id-text">${element.id}</td><td class="title-value">${element.title}</td><td class="rating-value">${element.rating}</td><td class="genre-value">${element.genre}</td><td><a href="#" class="edit-link">edit/delete</a></td></tr>`);
                     }
                 });
             });
@@ -77,7 +68,7 @@ $(document).ready(function () {
     }); //end movie-add-button .click
 
     $('#movie-edit-button').click(function (event) {
-        // $('#edit-movie-box').css('display', 'block');
+
         $('#loading-message').toggleClass('hidden');
         event.preventDefault();
 
@@ -101,7 +92,7 @@ $(document).ready(function () {
         setTimeout(function () {
             $('#loading-message').toggleClass('hidden');
             $('#movies-list-table').empty();
-            // $('#loading-message').append('<h2>Movies:</h2>')
+
             $.ajax("https://skitter-far-factory.glitch.me/movies").done(function(data, status, jqXhr) {
                 $('#movie-title-edit-input').val('');
                 $('#movie-rating-edit-input').val('');
@@ -109,31 +100,18 @@ $(document).ready(function () {
                 console.log(data);
                 data.forEach(function (element, index) {
                     if (element.genre !== undefined) {
-                        $('#movies-list-table').append(`<tr><td><input class="checkbox" type="checkbox"/>&nbsp;</td><td class="id-text">${element.id}</td><td class="title-value">${element.title}</td><td class="rating-value">${element.rating}</td><td class="genre-value">${element.genre}</td><td><a href="#" class="edit-link">edit/delete</a></td></tr>`);
-                    }
-                });
-
-                $(document).on('click', '.record_table tr', function(event) {
-                    if (event.target.type !== 'checkbox') {
-                        $(':checkbox', this).trigger('click');
+                        $('#movies-list-table').append(`<tr><td class="id-text">${element.id}</td><td class="title-value">${element.title}</td><td class="rating-value">${element.rating}</td><td class="genre-value">${element.genre}</td><td><a href="#" class="edit-link">edit/delete</a></td></tr>`);
                     }
                 });
 
                 $(document).on('click', '.edit-link', function(event) {
                     event.preventDefault();
-                    // if (event.target.type !== 'checkbox') {
-                    //     $(':checkbox', this).trigger('click');
-                    // }
 
                     $row = $(this).closest("tr");   // Find the row
                     $idText = $row.find(".id-text").text(); // Find the text
                     $titleValue = $row.find(".title-value").text();
                     $ratingValue = $row.find(".rating-value").text();
                     $genreValue = $row.find(".genre-value").text();
-
-                    // console.log($row);
-                    // console.log($titleValue);
-
 
                     $('#movie-title-edit-input').val($titleValue);
                     $('#movie-rating-edit-input').val($ratingValue);
@@ -175,30 +153,18 @@ $(document).ready(function () {
                 console.log(data);
                 data.forEach(function (element, index) {
                     if (element.genre !== undefined) {
-                        $('#movies-list-table').append(`<tr><td><input class="checkbox" type="checkbox"/>&nbsp;</td><td class="id-text">${element.id}</td><td class="title-value">${element.title}</td><td class="rating-value">${element.rating}</td><td class="genre-value">${element.genre}</td><td><a href="#" class="edit-link">edit/delete</a></td></tr>`);
-                    }
-                });
-                $(document).on('click', '.record_table tr', function(event) {
-                    if (event.target.type !== 'checkbox') {
-                        $(':checkbox', this).trigger('click');
+                        $('#movies-list-table').append(`<tr><td class="id-text">${element.id}</td><td class="title-value">${element.title}</td><td class="rating-value">${element.rating}</td><td class="genre-value">${element.genre}</td><td><a href="#" class="edit-link">edit/delete</a></td></tr>`);
                     }
                 });
 
                 $(document).on('click', '.edit-link', function(event) {
                     event.preventDefault();
-                    // if (event.target.type !== 'checkbox') {
-                    //     $(':checkbox', this).trigger('click');
-                    // }
 
                     $row = $(this).closest("tr");   // Find the row
                     $idText = $row.find(".id-text").text(); // Find the text
                     $titleValue = $row.find(".title-value").text();
                     $ratingValue = $row.find(".rating-value").text();
                     $genreValue = $row.find(".genre-value").text();
-
-                    // console.log($row);
-                    // console.log($titleValue);
-
 
                     $('#movie-title-edit-input').val($titleValue);
                     $('#movie-rating-edit-input').val($ratingValue);
@@ -209,17 +175,8 @@ $(document).ready(function () {
 
     }); //end delete-button .click
 
-    $(document).on('click', '.record_table tr', function(event) {
-        if (event.target.type !== 'checkbox') {
-            $(':checkbox', this).trigger('click');
-        }
-    });
-
     $(document).on('click', '.edit-link', function(event) {
         event.preventDefault();
-        // if (event.target.type !== 'checkbox') {
-        //     $(':checkbox', this).trigger('click');
-        // }
 
         $row = $(this).closest("tr");    // Find the row
         $idText = $row.find(".id-text").text(); // Find the text
