@@ -7,7 +7,7 @@
               integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
         <link rel="stylesheet" href="/css/movie-project.css">
     </head>
-    <body>
+    <body id="top">
     <header>
         <h1 style="text-align: center">Movies Project</h1>
     </header>
@@ -30,6 +30,31 @@
             </div>
         </div>
         <button id="movie-add-button" type="button" class="">Submit</button>
+        <br>
+        <div class="container-fluid d-flex flex-column align-items-center mx-auto" style="width: auto">
+            <h3>Edit/Delete a movie:</h3>
+            <div class="d-flex justify-content-between">
+                <div class="container d-flex flex-column align-items-center">
+                    <label for="movie-title-input">Edit the movie title:</label>
+                    <input class="form-control" id="movie-title-edit-input" type="text">
+                </div>
+
+                <div class="container d-flex flex-column align-items-center">
+                    <label for="movie-rating-input">Edit the rating:</label>
+                    <input class="form-control" id="movie-rating-edit-input" type="text">
+                </div>
+
+                <div class="container d-flex flex-column align-items-center">
+                    <label for="movie-genre-input">Edit the genre:</label>
+                    <input class="form-control" id="movie-genre-edit-input" type="text">
+                </div>
+            </div>
+            <br>
+            <div class="d-flex justify-content-around">
+                <button id="movie-edit-button" type="button" class="">Submit Changes</button>
+                <button id="delete-button" type="button" class="">Delete Movie</button>
+            </div>
+        </div> <!--end container-fluid-->
 
         <h3 id="loading-message" style="text-align: center">Loading...</h3>
 
@@ -51,27 +76,9 @@
         </table>
     </div> <!--end container-fluid-->
 
-    <div class="container-fluid d-flex flex-column align-items-center mx-auto" style="width: auto">
-        <h3>Edit a movie:</h3>
-        <div class="d-flex justify-content-between">
-            <div class="container d-flex flex-column align-items-center">
-                <label for="movie-title-input">Edit the movie title:</label>
-                <input class="form-control" id="movie-title-edit-input" type="text">
-            </div>
-
-            <div class="container d-flex flex-column align-items-center">
-                <label for="movie-rating-input">Edit the rating:</label>
-                <input class="form-control" id="movie-rating-edit-input" type="text">
-            </div>
-
-            <div class="container d-flex flex-column align-items-center">
-                <label for="movie-genre-input">Edit the genre:</label>
-                <input class="form-control" id="movie-genre-edit-input" type="text">
-            </div>
-        </div>
-        <br>
-        <button id="movie-edit-button" type="button" class="">Submit Changes</button>
-    </div> <!--end container-fluid-->
+    <p style="text-align: center">
+        <a href="#top">Go to top of page</a>
+    </p>
 
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"
             integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
