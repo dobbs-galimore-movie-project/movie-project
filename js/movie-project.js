@@ -1,5 +1,40 @@
 "use strict";
 $(document).ready(function () {
+
+    //////////////////////////////////////////
+    let ratingArray = [];
+    let genreArray = new Object();
+    $('#movie-search-button').click(function () {
+        let searchValue = $('#search-box').val();
+        // alert(searchValue);
+
+        $.ajax("https://skitter-far-factory.glitch.me/movies").done(function (data) {
+            // console.log(data.length);
+
+            data.forEach(function (element, index) {
+                if (element.title.toLowerCase().includes(searchValue.toLowerCase())) {
+                    $('#movies-list-table').empty();
+                    $('#movies-list-table').append(`<tr><td class="id-text">${element.id}</td><td class="title-value">${element.title}</td><td class="rating-value">${element.rating}</td><td class="genre-value">${element.genre}</td><td><a href="#" class="edit-link">edit/delete</a></td></tr>`);
+                    console.log(element);
+                }else if(element.rating.includes(searchValue)) {
+                    // ratingArray.push(element);
+                    // $('#movies-list-table').empty();
+                    // $('#movies-list-table').append(`<tr><td class="id-text">${element.id}</td><td class="title-value">${element.title}</td><td class="rating-value">${element.rating}</td><td class="genre-value">${element.genre}</td><td><a href="#" class="edit-link">edit/delete</a></td></tr>`);
+                    console.log(element);
+                    // console.log(ratingArray);
+                }else if(element.genre.toLowerCase().includes(searchValue.toLowerCase())) {
+                    // $('#movies-list-table').empty();
+                    // $('#movies-list-table').append(`<tr><td class="id-text">${element.id}</td><td class="title-value">${element.title}</td><td class="rating-value">${element.rating}</td><td class="genre-value">${element.genre}</td><td><a href="#" class="edit-link">edit/delete</a></td></tr>`);
+                    console.log(element);
+                } else {
+                    // console.log("Value doesn't exist");
+                }
+
+            });
+        });
+    });
+    //////////////////////////////////////////
+
     $.ajax("https://skitter-far-factory.glitch.me/movies").done(function(data, status, jqXhr) {
         $('#loading-message').toggleClass('hidden');
 
