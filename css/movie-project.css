@@ -33,3 +33,7 @@ header {
  .display-none {
      /*display: none !important;*/
  }
+
+ .id-text {
+     display: none;
+ }
