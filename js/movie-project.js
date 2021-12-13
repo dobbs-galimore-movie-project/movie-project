@@ -1,7 +1,6 @@
 "use strict";
 $(document).ready(function () {
     $.ajax("https://skitter-far-factory.glitch.me/movies").done(function(data, status, jqXhr) {
-        console.log(data);
         $('#loading-message').toggleClass('hidden');
 
         data.forEach(function (element, index) {
@@ -57,7 +56,7 @@ $(document).ready(function () {
                 $('#movie-title-input').val('');
                 $('#movie-rating-input').val('');
                 $('#movie-genre-input').val('');
-                console.log(data);
+
                 data.forEach(function (element, index) {
                     if (element.genre !== undefined) {
                         $('#movies-list-table').append(`<tr><td class="id-text">${element.id}</td><td class="title-value">${element.title}</td><td class="rating-value">${element.rating}</td><td class="genre-value">${element.genre}</td><td><a href="#" class="edit-link">edit/delete</a></td></tr>`);
@@ -68,7 +67,6 @@ $(document).ready(function () {
     }); //end movie-add-button .click
 
     $('#movie-edit-button').click(function (event) {
-
         $('#loading-message').toggleClass('hidden');
         event.preventDefault();
 
@@ -189,18 +187,10 @@ $(document).ready(function () {
         $('#movie-genre-edit-input').val($genreValue);
     });
 
-//Allow users to edit existing movies
-//TODO: Give users the option to edit an existing movie
-//TODO: A form should be pre-populated with the selected movie's details. Like creating a movie, this should not involve any page reloads, instead your javascript code should make an ajax request when the form is submitted.
-
-//Delete movies
-//TODO: Each movie should have a "delete" button. When this button is clicked, your javascript should send a DELETE request
-
 //Bonuses
 //TODO: Add a disabled attribute to buttons while their corresponding ajax request is still pending.
 //TODO: Show a loading animation instead of just text that says "loading...".
 //TODO: Use modals for the creating and editing movie forms.
-//TODO: Add a genre property to every movie.
 //TODO: Allow users to sort the movies by rating, title, or genre (if you have it).
 //TODO: Allow users to search through the movies by rating, title, or genre (if you have it).
 //TODO: Use a free movie API like OMDB to include extra info or render movie posters.
