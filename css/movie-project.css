@@ -26,3 +26,6 @@ header {
  th, a {
      color: yellowgreen;
  }
+ button {
+     margin-right: .5em;
+ }

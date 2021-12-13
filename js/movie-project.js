@@ -66,7 +66,7 @@ $(document).ready(function () {
     $('#movie-edit-button').click(function (event) {
         $('#loading-message').toggleClass('hidden');
         event.preventDefault();
-        //TODONE: When the form is submitted, the page should not reload / refresh, instead, your javascript should make a POST request to /movies with the information the user put into the form
+
         newUserTitle = $('#movie-title-edit-input').val();
         newUserRating = $('#movie-rating-edit-input').val();
         newUserGenre = $('#movie-genre-edit-input').val();
@@ -102,18 +102,20 @@ $(document).ready(function () {
         }, 3000);
     }); //end movie-add-button .click
 
+    $('#delete-button').click(function () {
+        alert("delete button clicked");
+    });
+
     $(document).on('click', '.record_table tr', function(event) {
-        // alert("checkbox test");
-        // $('body').css('color', 'yellow');
         if (event.target.type !== 'checkbox') {
             $(':checkbox', this).trigger('click');
         }
     });
 
     $(document).on('click', '.edit-link', function(event) {
-        if (event.target.type !== 'checkbox') {
-            $(':checkbox', this).trigger('click');
-        }
+        // if (event.target.type !== 'checkbox') {
+        //     $(':checkbox', this).trigger('click');
+        // }
 
         $row = $(this).closest("tr");    // Find the row
         $idText = $row.find(".id-text").text(); // Find the text
