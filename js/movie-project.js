@@ -6,7 +6,7 @@ $(document).ready(function () {
         // $('#loading-message').append('<h2>Movies:</h2>');
         data.forEach(function (element, index) {
             if (element.genre !== undefined) {
-                $('#movies-list-table').append(`<tr><td><input class="checkbox" type="checkbox"/>&nbsp;</td><td class="id-text">${element.id}</td><td class="title-value">${element.title}</td><td class="rating-value">${element.rating}</td><td class="genre-value">${element.genre}</td><td><a href="#" class="edit-link">edit </a>/<a href="#" class="delete-link"> delete</a></td></tr>`);
+                $('#movies-list-table').append(`<tr><td><input class="checkbox" type="checkbox"/>&nbsp;</td><td class="id-text">${element.id}</td><td class="title-value">${element.title}</td><td class="rating-value">${element.rating}</td><td class="genre-value">${element.genre}</td><td><a href="#" class="edit-link">edit/delete</a></td></tr>`);
             }
         });
     });
@@ -23,6 +23,10 @@ $(document).ready(function () {
     let $titleValue = '';
     let $ratingValue = '';
     let $genreValue = '';
+
+    let deleteUserTitle = '';
+    let deleteUserRating = '';
+    let deleteUserGenre = '';
 
     $('#movie-add-button').click(function (event) {
         $('#loading-message').toggleClass('hidden');
@@ -56,7 +60,7 @@ $(document).ready(function () {
                 console.log(data);
                 data.forEach(function (element, index) {
                     if (element.genre !== undefined) {
-                        $('#movies-list-table').append(`<tr><td><input class="checkbox" type="checkbox" />&nbsp;</td><td class="id-text">${element.id}</td><td class="title-value">${element.title}</td><td class="rating-value">${element.rating}</td><td class="genre-value">${element.genre}</td><td><a href="#" class="edit-link">edit </a>/<a href="#" class="delete-link"> delete</a></td></tr>`);
+                        $('#movies-list-table').append(`<tr><td><input class="checkbox" type="checkbox" />&nbsp;</td><td class="id-text">${element.id}</td><td class="title-value">${element.title}</td><td class="rating-value">${element.rating}</td><td class="genre-value">${element.genre}</td><td><a href="#" class="edit-link">edit/delete</a></td></tr>`);
                     }
                 });
             });
@@ -95,16 +99,51 @@ $(document).ready(function () {
                 console.log(data);
                 data.forEach(function (element, index) {
                     if (element.genre !== undefined) {
-                        $('#movies-list-table').append(`<tr><td><input class="checkbox" type="checkbox" />&nbsp;</td><td class="nr">${element.id}</td><td>${element.title}</td><td>${element.rating}</td><td>${element.genre}</td><td><a href="#" class="edit-link">edit </a>/<a href="#" class="delete-link"> delete</a></td></tr>`);
+                        $('#movies-list-table').append(`<tr><td><input class="checkbox" type="checkbox" />&nbsp;</td><td class="nr">${element.id}</td><td>${element.title}</td><td>${element.rating}</td><td>${element.genre}</td><td><a href="#" class="edit-link">edit/delete</a></td></tr>`);
                     }
                 });
             });
         }, 3000);
     }); //end movie-add-button .click
 
-    $('#delete-button').click(function () {
-        alert("delete button clicked");
-    });
+    $('#delete-button').click(function (event) {
+        $('#loading-message').toggleClass('hidden');
+        event.preventDefault();
+
+        deleteUserTitle = $('#movie-title-edit-input').val();
+        deleteUserRating = $('#movie-rating-edit-input').val();
+        deleteUserGenre = $('#movie-genre-edit-input').val();
+
+        const deleteUserAdd = {title: deleteUserTitle, rating: deleteUserRating, genre: deleteUserGenre};
+        const url = `https://skitter-far-factory.glitch.me/movies/${$idText}`;
+        const options = {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(deleteUserAdd),
+        };
+        fetch(url, options)
+            .then(data => console.log(data))
+            .catch( error => console.error(error));
+
+        setTimeout(function () {
+            $('#loading-message').toggleClass('hidden');
+            $('#movies-list-table').empty();
+            // $('#loading-message').append('<h2>Movies:</h2>')
+            $.ajax("https://skitter-far-factory.glitch.me/movies").done(function(data, status, jqXhr) {
+                $('#movie-title-edit-input').val('');
+                $('#movie-rating-edit-input').val('');
+                $('#movie-genre-edit-input').val('');
+                console.log(data);
+                data.forEach(function (element, index) {
+                    if (element.genre !== undefined) {
+                        $('#movies-list-table').append(`<tr><td><input class="checkbox" type="checkbox" />&nbsp;</td><td class="nr">${element.id}</td><td>${element.title}</td><td>${element.rating}</td><td>${element.genre}</td><td><a href="#" class="edit-link">edit/delete</a></td></tr>`);
+                    }
+                });
+            });
+        }, 3000);
+    }); //end delete-button .click
 
     $(document).on('click', '.record_table tr', function(event) {
         if (event.target.type !== 'checkbox') {
