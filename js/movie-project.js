@@ -75,7 +75,7 @@ $(document).ready(function () {
         newUserGenre = $('#movie-genre-edit-input').val();
 
         const newUserAdd = {title: newUserTitle, rating: newUserRating, genre: newUserGenre};
-        const url = 'https://skitter-far-factory.glitch.me/movies/103';
+        const url = `https://skitter-far-factory.glitch.me/movies/${$idText}`;
         const options = {
             method: 'PATCH',
             headers: {
@@ -137,7 +137,12 @@ $(document).ready(function () {
         $ratingValue = $row.find(".rating-value").text();
         $genreValue = $row.find(".genre-value").text();
 
-        alert(`ID: ${$idText}, Title: ${$titleValue}, Rating: ${$ratingValue}, Genre: ${$genreValue}`);
+        // alert(`ID: ${$idText}, Title: ${$titleValue}, Rating: ${$ratingValue}, Genre: ${$genreValue}`);
+
+        $('#movie-title-edit-input').attr('value', $titleValue);
+        $('#movie-rating-edit-input').attr('value', $ratingValue);
+        $('#movie-genre-edit-input').attr('value', $genreValue);
+
 
     });
 
