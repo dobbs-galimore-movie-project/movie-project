@@ -31,6 +31,7 @@ header {
  }
 
  .display-none {
+
      /*display: none !important;*/
  }
  /*styling for popcorn icon*/
@@ -104,3 +105,19 @@ body{
     background-color: black !important;
     color: white !important;
 }
+
+     display: none !important;
+ }
+
+ .display-block {
+     display: block;
+ }
+
+ .id-text {
+     display: none;
+ }
+
+ /*#edit-movie-box {*/
+ /*    display: none !important;*/
+ /*}*/
+

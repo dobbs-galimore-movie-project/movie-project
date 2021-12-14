@@ -1,21 +1,13 @@
 "use strict";
 $(document).ready(function () {
-    // function myFunction() {
-    //     var x = $('#edit-movie-box');
-    //     if (x.style.display === "none") {
-    //         x.style.display = "block";
-    //     } else {
-    //         x.style.display = "none";
-    //     }
-    // }
-
     $.ajax("https://skitter-far-factory.glitch.me/movies").done(function(data, status, jqXhr) {
-        console.log(data);
         $('#loading-message').toggleClass('hidden');
-        // $('#loading-message').append('<h2>Movies:</h2>');
+
         data.forEach(function (element, index) {
             if (element.genre !== undefined) {
+
                 $('#movies-list-table').append(`<tr><td><input class="checkbox" type="checkbox"/>&nbsp;</td><td class="id-text">${element.id}</td><td class="title-value">${element.title}</td><td class="rating-value">${element.rating}</td><td class="genre-value">${element.genre}</td><td>  <a href="#" class="edit-link"></a></td></tr>`);
+
             }
         });
     });
@@ -61,15 +53,17 @@ $(document).ready(function () {
         setTimeout(function () {
             $('#loading-message').toggleClass('hidden');
             $('#movies-list-table').empty();
-            // $('#loading-message').append('<h2>Movies:</h2>')
+
             $.ajax("https://skitter-far-factory.glitch.me/movies").done(function(data, status, jqXhr) {
                 $('#movie-title-input').val('');
                 $('#movie-rating-input').val('');
                 $('#movie-genre-input').val('');
-                console.log(data);
+
                 data.forEach(function (element, index) {
                     if (element.genre !== undefined) {
+
                         $('#movies-list-table').append(`<tr><td><input class="checkbox" type="checkbox"/>&nbsp;</td><td class="id-text">${element.id}</td><td class="title-value">${element.title}</td><td class="rating-value">${element.rating}</td><td class="genre-value">${element.genre}</td><td>  <a href="#" class="edit-link"></a></td></tr>`);
+
                     }
                 });
             });
@@ -77,7 +71,6 @@ $(document).ready(function () {
     }); //end movie-add-button .click
 
     $('#movie-edit-button').click(function (event) {
-        // $('#edit-movie-box').css('display', 'block');
         $('#loading-message').toggleClass('hidden');
         event.preventDefault();
 
@@ -101,7 +94,7 @@ $(document).ready(function () {
         setTimeout(function () {
             $('#loading-message').toggleClass('hidden');
             $('#movies-list-table').empty();
-            // $('#loading-message').append('<h2>Movies:</h2>')
+
             $.ajax("https://skitter-far-factory.glitch.me/movies").done(function(data, status, jqXhr) {
                 $('#movie-title-edit-input').val('');
                 $('#movie-rating-edit-input').val('');
@@ -109,6 +102,7 @@ $(document).ready(function () {
                 console.log(data);
                 data.forEach(function (element, index) {
                     if (element.genre !== undefined) {
+
                         $('#movies-list-table').append(`<tr><td><input class="checkbox" type="checkbox"/>&nbsp;</td><td class="id-text">${element.id}</td><td class="title-value">${element.title}</td><td class="rating-value">${element.rating}</td><td class="genre-value">${element.genre}</td><td>  <a href="#" class="edit-link"></a></td></tr>`);
                     }
                 });
@@ -116,24 +110,18 @@ $(document).ready(function () {
                 $(document).on('click', '.record_table tr', function(event) {
                     if (event.target.type !== 'checkbox') {
                         $(':checkbox', this).trigger('click');
+
                     }
                 });
 
                 $(document).on('click', '.edit-link', function(event) {
                     event.preventDefault();
-                    // if (event.target.type !== 'checkbox') {
-                    //     $(':checkbox', this).trigger('click');
-                    // }
 
                     $row = $(this).closest("tr");   // Find the row
                     $idText = $row.find(".id-text").text(); // Find the text
                     $titleValue = $row.find(".title-value").text();
                     $ratingValue = $row.find(".rating-value").text();
                     $genreValue = $row.find(".genre-value").text();
-
-                    // console.log($row);
-                    // console.log($titleValue);
-
 
                     $('#movie-title-edit-input').val($titleValue);
                     $('#movie-rating-edit-input').val($ratingValue);
@@ -175,30 +163,25 @@ $(document).ready(function () {
                 console.log(data);
                 data.forEach(function (element, index) {
                     if (element.genre !== undefined) {
+
                         $('#movies-list-table').append(`<tr><td><input class="checkbox" type="checkbox"/>&nbsp;</td><td class="id-text">${element.id}</td><td class="title-value">${element.title}</td><td class="rating-value">${element.rating}</td><td class="genre-value">${element.genre}</td><td>  <a href="#" class="edit-link"></a></td></tr>`);
                     }
                 });
                 $(document).on('click', '.record_table tr', function(event) {
                     if (event.target.type !== 'checkbox') {
                         $(':checkbox', this).trigger('click');
+
                     }
                 });
 
                 $(document).on('click', '.edit-link', function(event) {
                     event.preventDefault();
-                    // if (event.target.type !== 'checkbox') {
-                    //     $(':checkbox', this).trigger('click');
-                    // }
 
                     $row = $(this).closest("tr");   // Find the row
                     $idText = $row.find(".id-text").text(); // Find the text
                     $titleValue = $row.find(".title-value").text();
                     $ratingValue = $row.find(".rating-value").text();
                     $genreValue = $row.find(".genre-value").text();
-
-                    // console.log($row);
-                    // console.log($titleValue);
-
 
                     $('#movie-title-edit-input').val($titleValue);
                     $('#movie-rating-edit-input').val($ratingValue);
@@ -209,17 +192,49 @@ $(document).ready(function () {
 
     }); //end delete-button .click
 
-    $(document).on('click', '.record_table tr', function(event) {
-        if (event.target.type !== 'checkbox') {
-            $(':checkbox', this).trigger('click');
-        }
+    //////////////////////////////////////////
+    let ratingArray = [];
+    let genreArray = [];
+    $('#movie-search-button').click(function () {
+        $('#movies-list-table').empty();
+        let searchValue = $('#search-box').val();
+        // alert(searchValue);
+        $.ajax("https://skitter-far-factory.glitch.me/movies").done(function (data) {
+            // console.log(data.length);
+            data.forEach(function (element, index) {
+                if (element.title.toLowerCase().includes(searchValue.toLowerCase())) {
+                    $('#movies-list-table').append(`<tr><td class="id-text">${element.id}</td><td class="title-value">${element.title}</td><td class="rating-value">${element.rating}</td><td class="genre-value">${element.genre}</td><td><a href="#" class="edit-link">edit/delete</a></td></tr>`);
+                    // console.log(element);
+                }else if(element.rating.includes(searchValue)) {
+                    // $('#movies-list-table').empty();
+                    ratingArray.push(element);
+                    console.log(ratingArray);
+                    // for (let i = 0; i < ratingArray.length; i++) {
+                    //     $('#movies-list-table').append(`<tr><td class="id-text">${element.id}</td><td class="title-value">${element.title}</td><td class="rating-value">${element.rating}</td><td class="genre-value">${element.genre}</td><td><a href="#" class="edit-link">edit/delete</a></td></tr>`);
+                    // }
+
+                    // ratingArray.forEach(function (element) {
+                        $('#movies-list-table').append(`<tr><td class="id-text">${element.id}</td><td class="title-value">${element.title}</td><td class="rating-value">${element.rating}</td><td class="genre-value">${element.genre}</td><td><a href="#" class="edit-link">edit/delete</a></td></tr>`);
+                    // });
+
+                    // console.log(element);
+                    // console.log(ratingArray);
+                }else if(element.genre.toLowerCase().includes(searchValue.toLowerCase())) {
+                    genreArray.push(element);
+                    $('#movies-list-table').append(`<tr><td class="id-text">${element.id}</td><td class="title-value">${element.title}</td><td class="rating-value">${element.rating}</td><td class="genre-value">${element.genre}</td><td><a href="#" class="edit-link">edit/delete</a></td></tr>`);
+
+                } else {
+                    // console.log("Value doesn't exist");
+                }
+
+            });
+            console.log(ratingArray);
+        });
     });
+    //////////////////////////////////////////
 
     $(document).on('click', '.edit-link', function(event) {
         event.preventDefault();
-        // if (event.target.type !== 'checkbox') {
-        //     $(':checkbox', this).trigger('click');
-        // }
 
         $row = $(this).closest("tr");    // Find the row
         $idText = $row.find(".id-text").text(); // Find the text
@@ -232,18 +247,10 @@ $(document).ready(function () {
         $('#movie-genre-edit-input').val($genreValue);
     });
 
-//Allow users to edit existing movies
-//TODO: Give users the option to edit an existing movie
-//TODO: A form should be pre-populated with the selected movie's details. Like creating a movie, this should not involve any page reloads, instead your javascript code should make an ajax request when the form is submitted.
-
-//Delete movies
-//TODO: Each movie should have a "delete" button. When this button is clicked, your javascript should send a DELETE request
-
 //Bonuses
 //TODO: Add a disabled attribute to buttons while their corresponding ajax request is still pending.
 //TODO: Show a loading animation instead of just text that says "loading...".
 //TODO: Use modals for the creating and editing movie forms.
-//TODO: Add a genre property to every movie.
 //TODO: Allow users to sort the movies by rating, title, or genre (if you have it).
 //TODO: Allow users to search through the movies by rating, title, or genre (if you have it).
 //TODO: Use a free movie API like OMDB to include extra info or render movie posters.
