@@ -33,3 +33,74 @@ header {
  .display-none {
      /*display: none !important;*/
  }
+ /*styling for popcorn icon*/
+ .pop{
+     height: 100px;
+     width: 100px;
+
+ }
+ /*styling for table*/
+thead,tr,th{
+    background-color: black;
+
+    /*border: black;*/
+    color: whitesmoke;
+}
+.navbar{
+    background-color: white;
+
+}
+.nav-link{
+    color: black !important;
+}
+.navbar-toggler{
+    background-color: black;
+    color: white;
+}
+
+body{
+    font-family: 'Handlee', cursive;
+    color: whitesmoke;
+}
+.take{
+    height: 75px;
+    width: 75px;
+}
+.film_reel{
+    height: 75px;
+    width: 75px;
+}
+.movie-search-button{
+    color: black;
+    border: solid black;
+}
+.movie-search-button:hover{
+    color: white;
+    background-color: black;
+    border: solid black;
+}
+.last-link{
+    color: white;
+}
+.last-link:hover{
+    color: darkgrey;
+}
+.dropdown-menu{
+    background-color: darkgrey;
+}
+#delete-button:hover{
+    background-color: black;
+    color: white;
+}
+#movie-edit-button:hover{
+    background-color: black;
+    color: white;
+}
+.submit-drop{
+    background-color: white !important;
+    color: black !important;
+}
+.submit-drop:hover{
+    background-color: black !important;
+    color: white !important;
+}

@@ -15,7 +15,7 @@ $(document).ready(function () {
         // $('#loading-message').append('<h2>Movies:</h2>');
         data.forEach(function (element, index) {
             if (element.genre !== undefined) {
-                $('#movies-list-table').append(`<tr><td><input class="checkbox" type="checkbox"/>&nbsp;</td><td class="id-text">${element.id}</td><td class="title-value">${element.title}</td><td class="rating-value">${element.rating}</td><td class="genre-value">${element.genre}</td><td><a href="#" class="edit-link">edit/delete</a></td></tr>`);
+                $('#movies-list-table').append(`<tr><td><input class="checkbox" type="checkbox"/>&nbsp;</td><td class="id-text">${element.id}</td><td class="title-value">${element.title}</td><td class="rating-value">${element.rating}</td><td class="genre-value">${element.genre}</td><td>  <a href="#" class="edit-link"></a></td></tr>`);
             }
         });
     });
@@ -69,7 +69,7 @@ $(document).ready(function () {
                 console.log(data);
                 data.forEach(function (element, index) {
                     if (element.genre !== undefined) {
-                        $('#movies-list-table').append(`<tr><td><input class="checkbox" type="checkbox" />&nbsp;</td><td class="id-text">${element.id}</td><td class="title-value">${element.title}</td><td class="rating-value">${element.rating}</td><td class="genre-value">${element.genre}</td><td><a href="#" class="edit-link">edit/delete</a></td></tr>`);
+                        $('#movies-list-table').append(`<tr><td><input class="checkbox" type="checkbox"/>&nbsp;</td><td class="id-text">${element.id}</td><td class="title-value">${element.title}</td><td class="rating-value">${element.rating}</td><td class="genre-value">${element.genre}</td><td>  <a href="#" class="edit-link"></a></td></tr>`);
                     }
                 });
             });
@@ -109,7 +109,7 @@ $(document).ready(function () {
                 console.log(data);
                 data.forEach(function (element, index) {
                     if (element.genre !== undefined) {
-                        $('#movies-list-table').append(`<tr><td><input class="checkbox" type="checkbox"/>&nbsp;</td><td class="id-text">${element.id}</td><td class="title-value">${element.title}</td><td class="rating-value">${element.rating}</td><td class="genre-value">${element.genre}</td><td><a href="#" class="edit-link">edit/delete</a></td></tr>`);
+                        $('#movies-list-table').append(`<tr><td><input class="checkbox" type="checkbox"/>&nbsp;</td><td class="id-text">${element.id}</td><td class="title-value">${element.title}</td><td class="rating-value">${element.rating}</td><td class="genre-value">${element.genre}</td><td>  <a href="#" class="edit-link"></a></td></tr>`);
                     }
                 });
 
@@ -175,7 +175,7 @@ $(document).ready(function () {
                 console.log(data);
                 data.forEach(function (element, index) {
                     if (element.genre !== undefined) {
-                        $('#movies-list-table').append(`<tr><td><input class="checkbox" type="checkbox"/>&nbsp;</td><td class="id-text">${element.id}</td><td class="title-value">${element.title}</td><td class="rating-value">${element.rating}</td><td class="genre-value">${element.genre}</td><td><a href="#" class="edit-link">edit/delete</a></td></tr>`);
+                        $('#movies-list-table').append(`<tr><td><input class="checkbox" type="checkbox"/>&nbsp;</td><td class="id-text">${element.id}</td><td class="title-value">${element.title}</td><td class="rating-value">${element.rating}</td><td class="genre-value">${element.genre}</td><td>  <a href="#" class="edit-link"></a></td></tr>`);
                     }
                 });
                 $(document).on('click', '.record_table tr', function(event) {
