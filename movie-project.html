@@ -5,72 +5,110 @@
         <title>Movies Project</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
               integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Handlee&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="/css/movie-project.css">
+        <style>
+            tr {
+                border-color: silver;
+                border-style: solid;
+                border-width: 3px;
+
+                /*background-color: #d9d9d9;*/
+            }
+            body{
+                background-image: url('img/filmbackground.jpg');
+            }
+        </style>
     </head>
     <body id="top">
     <header>
-        <h1 style="text-align: center">Movies Project</h1>
+        <h1 style="text-align: center"><img class="pop" src="/img/neonpop.jpg" alt="pop"/>Movies Project<img class="pop" src="/img/neonpop.jpg" alt="pop"/></h1>
     </header>
-    <div class="container-fluid d-flex flex-column align-items-center mx-auto" style="width: auto">
-        <h3>Add a movie to the list:</h3>
-        <div class="d-flex justify-content-between">
-            <div class="container d-flex flex-column align-items-center">
-                <label for="movie-title-input">Enter a movie title:</label>
-                <input class="form-control" id="movie-title-input" type="text" onfocus="this.value=''">
-            </div>
+<!--Nav bar with dropdown Menu    -->
+    <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="#"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">Movie Menu
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-            <div class="container d-flex flex-column align-items-center">
-                <label for="movie-rating-input">Enter a rating:</label>
-                <input class="form-control" id="movie-rating-input" type="text" onfocus="this.value=''">
-            </div>
+<!--        Add a Movie Dropdown-->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img class="take" src="img/take.jpg"/> Add a movie
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-            <div class="container d-flex flex-column align-items-center">
-                <label for="movie-genre-input">Enter the genre:</label>
-                <input class="form-control" id="movie-genre-input" type="text" onfocus="this.value=''">
-            </div>
+                        <input class="form-control" id="movie-title-input" placeholder="Enter a movie title" onfocus="this.value=''">
+
+                        <input class="form-control" id="movie-rating-input" placeholder="Enter a rating here" type="text" onfocus="this.value=''">
+
+                        <input class="form-control" id="movie-genre-input" placeholder="Enter genre here" type="text" onfocus="this.value=''">
+                        <button id="movie-add-button" type="button" class="submit-drop">Submit</button>
+                        <div class="dropdown-divider"></div>
+                    </div>
+                </li>
+
+<!--                Second Dropdown to edit or delete movie-->
+                <li class="nav-item dropdown1">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img class="film_reel" src="img/film_reel.jpg"/> Edit or Delete a Movie
+                        </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                        <input class="form-control" id="movie-title-edit-input" placeholder="Edit Movie here"type="text">
+
+                        <input class="form-control" id="movie-rating-edit-input" placeholder="Edit the Rating here"type="text">
+
+                        <input class="form-control" id="movie-genre-edit-input" placeholder="Edit the Genre here"type="text">
+                        <button id="movie-edit-button" type="button" class="">Submit Changes</button>
+                        <button id="delete-button" type="button" class="">Delete Movie</button>
+                        <div class="dropdown-divider"></div>
+
+                    </div>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2 search-box" type="search" placeholder="Search Our Movies here" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0 search movie-search-button" type="submit">Search</button>
+            </form>
         </div>
-        <button id="movie-add-button" type="button" class="">Submit</button>
+    </nav>
+
+
+
+
+
+    <!--Movie Inputs-->
+    <div class="container-fluid d-flex flex-column align-items-center mx-auto" style="width: auto">
         <br>
-        <div id="edit-movie-box" class="container-fluid d-flex flex-column align-items-center mx-auto">
-            <h3>Edit/Delete a movie:</h3>
+
+        <div id="edit-movie-box" class="display-none container-fluid d-flex flex-column align-items-center mx-auto">
+
+
             <div class="d-flex justify-content-between">
-                <div class="container d-flex flex-column align-items-center">
-                    <label for="movie-title-input">Edit the movie title:</label>
-                    <input class="form-control" id="movie-title-edit-input" type="text">
-                </div>
 
-                <div class="container d-flex flex-column align-items-center">
-                    <label for="movie-rating-input">Edit the rating:</label>
-                    <input class="form-control" id="movie-rating-edit-input" type="text">
-                </div>
+            </div>
 
-                <div class="container d-flex flex-column align-items-center">
-                    <label for="movie-genre-input">Edit the genre:</label>
-                    <input class="form-control" id="movie-genre-edit-input" type="text">
-                </div>
-            </div>
-            <br>
-            <div class="d-flex justify-content-around">
-                <button id="movie-edit-button" type="button" class="">Submit Changes</button>
-                <button id="delete-button" type="button" class="">Delete Movie</button>
-            </div>
-            <br>
-            <div>
-                <label for="movie-genre-input">Search for a movie</label>
-                <input class="form-control" id="search-box" type="text" placeholder="Search by title, rating, or genre">
-                <button id="movie-search-button" type="button">Search</button>
-            </div>
+
+
+
         </div> <!--end container-fluid-->
+<!--Loading Reel is here-->
+
+        <h3  id="loading-message" style="text-align: center"><iframe src='https://gfycat.com/ifr/AngelicVariableAmericanriverotter' frameborder='0' scrolling='no' allowfullscreen width='240' height='224'></iframe><p> <a href="https://gfycat.com/angelicvariableamericanriverotter">via Gfycat</a></p>
+           Loading...</h3>
 
 
 
-        <h3 id="loading-message" style="text-align: center">Loading...</h3>
+        <table class="record_table table table-sm" style="width: 75%">
+<!--            Change font color for h3-->
+            <h3 class="h3-font">Movies</h3>
+            <thead >
 
-<!--        <div id="loading-message" style="width:25%;height:0;padding-bottom:48%;position:relative;"><iframe src="https://giphy.com/embed/VxbP9tLeKzazm" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/movie-black-and-white-VxbP9tLeKzazm">via GIPHY</a></p>-->
-
-        <table class="record_table table table-sm table-dark table-striped" style="width: 75%">
-            <h3>Movies</h3>
-            <thead>
                 <tr>
                     <th style="display: none">ID</th>
                     <th>Title</th>
@@ -84,7 +122,7 @@
     </div> <!--end container-fluid-->
 
     <p style="text-align: center">
-        <a href="#top">Go to top of page</a>
+        <a class="last-link" href="#top">Go to top of page</a>
     </p>
 <!--undo complete, stop here-->
 
@@ -96,5 +134,6 @@
             integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
             crossorigin="anonymous"></script>
     <script src="/js/movie-project.js"></script>
+
     </body>
 </html>
